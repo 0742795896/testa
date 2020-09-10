@@ -3,6 +3,7 @@ import json
 import requests
 
 
+
 app = Flask(__name__)
 
 
@@ -11,12 +12,12 @@ def hello_world():
     return 'Hello World!'
 
 
-def api():
-    request = requests.get("https://matchilling-chuck-norris-jokes-v1.p.rapidapi.com/jokes/random")
-    request_text = request.text
-
-    data = json.loads(request_text)
-    print(data)
+@app.route('/webhook', methods=['POST'])
+def webhook():
+  return {
+        "fulfillmentText": 'This is from the ifedha webhook',
+        "source": 'webhook'
+    }
 
 
 if __name__ == '__main__':
